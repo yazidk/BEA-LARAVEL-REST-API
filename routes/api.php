@@ -15,10 +15,13 @@ use App\Http\Controllers\API\Fiche_tenue_compteController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//Public Routes
 Route::post('/register' , [AuthController::class , 'register']);
 
-Route::post('/ajouter-fiche' , [Fiche_tenue_compteController::class , 'store']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+//Protected Routes
+Route::group(['middleware' => ['auth:sanctum']] , function () {
+    Route::post('/ajouter-fiche' , [Fiche_tenue_compteController::class , 'store']);
+    Route::post('/logout' , [Fiche_tenue_compteController::class , 'logout']); 
 });
+
