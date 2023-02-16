@@ -24,14 +24,14 @@ class Fiche_tenue_compteController extends Controller
             'status' => 200 ,
             'message' => 'Vous avez Ajouté une nouvelle fiche',
             'fiche_tenue' => $fiche_tenue
-        ]);
-       
-       
-      
+        ]); 
       
     }
 
-    
+   // search Fiche compte 
+   public function search ($key) {
+       return  Fiche_tenue_compte::where('compte_bancaire_num' ,  'Like' , "%$key%")->get(); 
+   } 
 
 
 }
